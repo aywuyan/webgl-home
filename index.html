@@ -2,33 +2,20 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta
-            http-equiv="Cache-Control"
-            content="no-cache" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta http-equiv="Cache-Control" content="no-cache" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <title>seeby丨Believe in yourself and all that you are.</title>
-        <meta
-            name="description"
-            content="seeby的个人主页，一个热爱生活与探索的空间。" />
-        <meta
-            name="keywords"
-            content="seeby,seeby.de,WebGL,主页,励志" />
-        <meta
-            property="og:url"
-            content="https://github.com/WishMelz/webgl-home/" />
+        <meta name="description" content="seeby的个人主页，一个热爱生活与探索的空间。" />
+        <meta name="keywords" content="seeby,seeby.de,WebGL,主页,励志" />
+        <meta property="og:url" content="https://github.com/WishMelz/webgl-home/" />
 
-        <script
-            type="text/javascript"
-            src="assets/dat.gui.min.js"></script>
+        <script type="text/javascript" src="assets/dat.gui.min.js"></script>
         <style>
             * {
                 user-select: none;
             }
 
-            html,
-            body {
+            html, body {
                 overflow: hidden;
                 background-color: #000;
             }
@@ -44,6 +31,7 @@
                 width: 100%;
                 height: 100%;
             }
+
             .wrap {
                 position: fixed;
                 left: 0;
@@ -54,12 +42,14 @@
                 pointer-events: none;
                 text-align: center;
             }
+
             .main {
                 position: absolute;
                 top: 25%;
                 left: 0;
                 right: 0;
             }
+
             h1 {
                 color: #fff;
                 text-align: center;
@@ -68,6 +58,14 @@
                 animation: animate 0.5s linear infinite;
                 margin: 0;
             }
+
+            h2 {
+                color: #fff;
+                text-align: center;
+                font-family: sans-serif;
+                font-size: 2.5em;
+            }
+
             footer {
                 position: absolute;
                 left: 0;
@@ -75,16 +73,18 @@
                 bottom: 0;
                 padding: 20px;
             }
+
             footer a {
                 pointer-events: auto;
                 color: #fff;
             }
+
             footer span {
                 font-size: 12px;
             }
+
             @keyframes animate {
-                0%,
-                100% {
+                0%, 100% {
                     text-shadow: -1.5px -1.5px 0 #0ff, 1.5px 1.5px 0 #f00;
                 }
 
@@ -100,6 +100,7 @@
                     text-shadow: -1.5px 1.5px 0 #0ff, -1.5px 1.5px 0 #f00;
                 }
             }
+
             @media screen and (max-width: 767px) {
                 h1 {
                     font-size: 4.5rem;
@@ -115,6 +116,17 @@
             ga.l = +new Date();
             ga("create", "G-0KCMKV51D8", "auto");
             ga("send", "pageview");
+
+            // 获取新的英语句子并更新到 h2 标签
+            async function fetchQuote() {
+                const response = await fetch('https://api.kekc.cn/api/yien');
+                const data = await response.json();
+                const quote = data.en; // 只取英语部分
+                document.querySelector('h2').textContent = quote;
+            }
+
+            // 页面加载后获取并显示句子
+            window.onload = fetchQuote;
         </script>
     </head>
     <body>
