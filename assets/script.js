@@ -1,5 +1,10 @@
 'use strict';
-
+console.log(
+    `%c WEBGLHOME %c WisheMeLzzz `,
+    "background:#35495e; color:#fff; padding: 1px; border-radius: 3px 0 0 3px;",
+    "background:#65b587; color:#fff; padding: 1px; border-radius: 0 3px 3px 0;"
+);
+console.log('https://github.com/WishMelz/webgl-home');
 
 var canvas = document.getElementsByTagName('canvas')[0];
 resizeCanvas();
