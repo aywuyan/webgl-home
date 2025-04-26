@@ -119,27 +119,33 @@
                 }
             }
         </style>
-        <script>
-            window.ga =
-                window.ga ||
-                function () {
-                    (ga.q = ga.q || []).push(arguments);
-                };
-            ga.l = +new Date();
-            ga("create", "G-0KCMKV51D8", "auto");
-            ga("send", "pageview");
-
+          <!-- GA4 官方埋点，必须放在 head 里尽早加载 -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-0KCMKV51D8"></script>
+          <script>
+            // 初始化 gtag.js，并自动发送一次 page_view
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){ dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-0KCMKV51D8');
+          </script>
+        
+          <!-- 你的业务逻辑脚本 -->
+          <script>
             // 获取新的英语句子并更新到 h3 标签
             async function fetchQuote() {
+              try {
                 const response = await fetch('https://api.kekc.cn/api/yien');
                 const data = await response.json();
                 const quote = data.en; // 只取英语部分
                 document.querySelector('h3').textContent = quote;
+              } catch (err) {
+                console.error('获取句子失败：', err);
+              }
             }
-
+        
             // 页面加载后获取并显示句子
-            window.onload = fetchQuote;
-        </script>
+            window.addEventListener('load', fetchQuote);
+          </script>
     </head>
     <body>
         <canvas></canvas>
