@@ -108,8 +108,9 @@ function getWebGLContext (canvas) {
         formatR = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
     }
 
-    ga('send', 'event', isWebGL2 ? 'webgl2' : 'webgl', formatRGBA == null ? 'not supported' : 'supported');
-
+    
+    //ga('send', 'event', isWebGL2 ? 'webgl2' : 'webgl', formatRGBA == null ? 'not supported' : 'supported');
+    gtag('event', 'webgl_check', { event_category: isWebGL2 ? 'webgl2' : 'webgl', event_label: formatRGBA == null ? 'not supported' : 'supported' }); 
     return {
         gl: gl,
         ext: {
@@ -193,7 +194,8 @@ function startGUI () {
 
     var github = gui.add({ fun : function () {
         window.open('https://github.com/PavelDoGreat/WebGL-Fluid-Simulation');
-        ga('send', 'event', 'link button', 'github');
+        gtag('event', 'link_button_click', { event_category: 'link button', event_label: 'github' });
+        //ga('send', 'event', 'link button', 'github');
     } }, 'fun').name('Github');
     github.__li.className = 'cr function bigFont';
     github.__li.style.borderLeft = '3px solid #8C8C8C';
@@ -202,7 +204,8 @@ function startGUI () {
     githubIcon.className = 'icon github';
 
     var twitter = gui.add({ fun : function () {
-        ga('send', 'event', 'link button', 'twitter');
+        gtag('event', 'link_button_click', { event_category: 'link button', event_label: 'twitter' });
+        //ga('send', 'event', 'link button', 'twitter');
         window.open('https://twitter.com/PavelDoGreat');
     } }, 'fun').name('Twitter');
     twitter.__li.className = 'cr function bigFont';
@@ -212,7 +215,8 @@ function startGUI () {
     twitterIcon.className = 'icon twitter';
 
     var discord = gui.add({ fun : function () {
-        ga('send', 'event', 'link button', 'discord');
+        gtag('event', 'link_button_click', { event_category: 'link button', event_label: 'discord' });
+        //ga('send', 'event', 'link button', 'discord');
         window.open('https://discordapp.com/invite/CeqZDDE');
     } }, 'fun').name('Discord');
     discord.__li.className = 'cr function bigFont';
@@ -222,7 +226,8 @@ function startGUI () {
     discordIcon.className = 'icon discord';
 
     var app = gui.add({ fun : function () {
-        ga('send', 'event', 'link button', 'app');
+        gtag('event', 'link_button_click', { event_category: 'link button', event_label: 'app' });
+        //ga('send', 'event', 'link button', 'app');
         window.open('http://onelink.to/5b58bn');
     } }, 'fun').name('Check out mobile app');
     app.__li.className = 'cr function appBigFont';
